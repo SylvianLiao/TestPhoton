@@ -22,15 +22,20 @@ public class PhotonManager : Photon.PunBehaviour
 
     void Start()
     {
-        InvokeRepeating("UpdateStatus", 0, 1f);
+        //InvokeRepeating("UpdateStatus", 0, 1f);
 
         Connect();
     }
 
     void Connect()
     {
+        //PhotonNetwork.ConnectToRegion(CloudRegionCode.asia, "PhotonTest_1.0");
         // 與 Photon Cloud/Server 建立起連線,可以用字串方式設定須要連線的遊戲版本
-        PhotonNetwork.ConnectUsingSettings("PUN_PhotonCloud_1.0");
+        if (!PhotonNetwork.ConnectUsingSettings("PUN_PhotonCloud_1.0"))
+        {
+            Debug.Log("Connect Using Settings Failed...");
+        }
+        
     }
 
     void UpdateStatus()
@@ -38,5 +43,16 @@ public class PhotonManager : Photon.PunBehaviour
         string status = PhotonNetwork.connectionStateDetailed.ToString();
         int ping = PhotonNetwork.GetPing();
         Debug.Log(status + ", " + ping + "ms");
+    }
+
+    public override void OnConnectedToPhoton()
+    {
+        Debug.Log("Connecting....");
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("Connect To Master Success!");
+
     }
 }

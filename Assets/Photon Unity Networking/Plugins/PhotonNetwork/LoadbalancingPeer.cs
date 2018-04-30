@@ -1597,7 +1597,7 @@ using ExitGames.Client.Photon;
         /// An invisible room can be joined by name but is excluded from random matchmaking.
         ///
         /// Use this to "hide" a room and simulate "private rooms". Players can exchange a roomname and create it
-        /// invisble to avoid anyone else joining it.
+        /// invisible to avoid anyone else joining it.
         /// </remarks>
         public bool IsVisible { get { return this.isVisibleField; } set { this.isVisibleField = value; } }
         private bool isVisibleField = true;
